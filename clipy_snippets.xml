@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<folders>
+	<folder>
+		<title>github</title>
+		<snippets>
+			<snippet>
+				<title>LGTM</title>
+				<content>![LGTM](https://img.shields.io/badge/review-LGTM-brightgreen?logo=GitHub)</content>
+			</snippet>
+			<snippet>
+				<title>ask</title>
+				<content>![ask](https://img.shields.io/badge/review-ask-blue?logo=GitHub)</content>
+			</snippet>
+			<snippet>
+				<title>want</title>
+				<content>![want](https://img.shields.io/badge/review-want-yellow?logo=GitHub)</content>
+			</snippet>
+			<snippet>
+				<title>nits</title>
+				<content>![nits](https://img.shields.io/badge/review-nits-green?logo=GitHub)</content>
+			</snippet>
+			<snippet>
+				<title>imo</title>
+				<content>![imo](https://img.shields.io/badge/review-imo-ff69b4?logo=GitHub)</content>
+			</snippet>
+			<snippet>
+				<title>must</title>
+				<content>![must](https://img.shields.io/badge/review-must-red?logo=GitHub)</content>
+			</snippet>
+			<snippet>
+				<title>FYI</title>
+				<content>![FYI](https://img.shields.io/badge/review-FYI-be95ff?logo=GitHub)</content>
+			</snippet>
+			<snippet>
+				<title>WIP</title>
+				<content>![WIP](https://img.shields.io/badge/review-WIP-purple?logo=GitHub)</content>
+			</snippet>
+			<snippet>
+				<title>NP</title>
+				<content>![NP](https://img.shields.io/badge/review-NP-darkgreen?logo=GitHub)</content>
+			</snippet>
+			<snippet>
+				<title>img</title>
+				<content>&lt;img src=&quot;&quot; width=&quot;&quot; /&gt;</content>
+			</snippet>
+			<snippet>
+				<title>flowchart</title>
+				<content>```mermaid
+flowchart LR
+   a --&gt; b --&gt; c
+```</content>
+			</snippet>
+			<snippet>
+				<title>grid img</title>
+				<content>| |
+ |:--:|:--:
+ | &lt;img src=&quot;&quot; width=&quot;&quot;&gt;| &lt;img src=&quot;&quot; width=&quot;&quot;&gt;</content>
+			</snippet>
+			<snippet>
+				<title>details</title>
+				<content>&lt;details&gt;
+&lt;summary&gt;title&lt;/summary&gt;
+
+text
+&lt;/details&gt;</content>
+			</snippet>
+			<snippet>
+				<title>NOTE</title>
+				<content>&gt; [!NOTE]
+&gt;</content>
+			</snippet>
+			<snippet>
+				<title>TIP</title>
+				<content>&gt; [!TIP]
+&gt;</content>
+			</snippet>
+			<snippet>
+				<title>IMPORTANT</title>
+				<content>&gt; [!IMPORTANT]
+&gt;</content>
+			</snippet>
+			<snippet>
+				<title>WARNING</title>
+				<content>&gt; [!WARNING]
+&gt;</content>
+			</snippet>
+			<snippet>
+				<title>CAUTION</title>
+				<content>&gt; [!CAUTION]
+&gt;</content>
+			</snippet>
+		</snippets>
+	</folder>
+</folders>

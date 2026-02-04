@@ -9,20 +9,6 @@ OS="$(uname -s)"
 echo "🚀 dotfiles setup start"
 
 # ==============================
-# .zshrc symlink
-# ==============================
-ZSHRC_TARGET="$HOME/.zshrc"
-ZSHRC_SOURCE="$DOTFILES_DIR/.zshrc"
-
-if [[ -e "$ZSHRC_TARGET" || -L "$ZSHRC_TARGET" ]]; then
-  echo "⚠️  ~/.zshrc already exists, backing up"
-  mv "$ZSHRC_TARGET" "$ZSHRC_TARGET.backup.$(date +%s)"
-fi
-
-echo "🔗 Linking ~/.zshrc -> $ZSHRC_SOURCE"
-ln -s "$ZSHRC_SOURCE" "$ZSHRC_TARGET"
-
-# ==============================
 # Make zsh the default shell
 # ==============================
 CURRENT_SHELL="$(basename "$SHELL")"
@@ -35,6 +21,20 @@ if [[ -n "$ZSH_PATH" && "$CURRENT_SHELL" != "zsh" ]]; then
 else
   echo "✅ zsh is already the default shell or not installed"
 fi
+
+# ==============================
+# .zshrc symlink
+# ==============================
+ZSHRC_TARGET="$HOME/.zshrc"
+ZSHRC_SOURCE="$DOTFILES_DIR/.zshrc"
+
+if [[ -e "$ZSHRC_TARGET" || -L "$ZSHRC_TARGET" ]]; then
+  echo "⚠️  ~/.zshrc already exists, backing up"
+  mv "$ZSHRC_TARGET" "$ZSHRC_TARGET.backup.$(date +%s)"
+fi
+
+echo "🔗 Linking ~/.zshrc -> $ZSHRC_SOURCE"
+ln -s "$ZSHRC_SOURCE" "$ZSHRC_TARGET"
 
 # ==============================
 # Volta
@@ -56,6 +56,12 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 EOF
 fi
+
+# ==============================
+# Git commit template
+# ==============================
+git config --global commit.template "$DOTFILES_DIR/.gitmessage.txt"
+echo "✅ Git commit template set to $DOTFILES_DIR/.gitmessage.txt"
 
 # ==============================
 # macOS
@@ -85,6 +91,7 @@ elif [[ "$OS" == "Linux" ]]; then
 
   sudo apt update
 
+  echo "📦 Installing packages..."
   sudo apt install -y \
     peco \
     jq \

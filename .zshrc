@@ -1,7 +1,6 @@
 # --------------------------------------------------
 # Completion system
 # --------------------------------------------------
-
 # brew completion
 if type brew &> /dev/null; then
   FPATH="$(brew --prefix)/share/zsh/site-functions:$FPATH"
@@ -18,7 +17,6 @@ compinit
 # --------------------------------------------------
 # History substring search
 # --------------------------------------------------
-
 if type brew &> /dev/null; then
   source "$(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
   bindkey '^[[A' history-substring-search-up

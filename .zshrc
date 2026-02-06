@@ -80,9 +80,10 @@ function key () {
 # Add git worktree and branch
 # Usage: gwadd <branch-name>
 function gwadd () {
+  local main_dir=$(git worktree list | head -n 1 | awk '{print $1}')
   local dir_name=${1//\//-}
-  echo "Adding worktree: $(pwd)/${dir_name} for branch: $1"
-  git worktree add -b "$1" "$(pwd)/${dir_name}"
+  echo "Adding worktree: ${main_dir}/${dir_name} for branch: $1"
+  git worktree add -b "$1" "${main_dir}/${dir_name}"
 }
 
 # Remove git worktree and branch

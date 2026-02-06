@@ -50,6 +50,8 @@ alias gl='git log'
 alias gc='git checkout'
 alias gcp='git checkout $(git branch | peco)'
 alias gb='git branch'
+alias gw='git worktree'
+alias gwl='git worktree list'
 alias gbd='git branch -D $(git branch | peco)'
 alias gs='git stash -u'
 alias gss='git stash save'
@@ -73,4 +75,60 @@ function key () {
   echo 'Ctrl + -      → undo'
   echo 'Ctrl + l      → 今のコマンドラインをウィンドウの一番上に持ってくる'
   echo 'Cmd + k       → Clear CLI'
+}
+
+# Add git worktree and branch
+# Usage: gwadd <branch-name>
+function gwadd () {
+  local dir_name=${1//\//-}
+  echo "Adding worktree: $(pwd)/${dir_name} for branch: $1"
+  git worktree add -b "$1" "$(pwd)/${dir_name}"
+}
+
+# Remove git worktree and branch
+function gwrm () {
+  local selected_line=$(git worktree list | peco)
+  [ -z "$selected_line" ] && return
+
+  local target_dir hash target_branch
+  echo $selected_line | read target_dir hash target_branch
+
+  target_branch=${target_branch//[\[\]]/}
+  echo "Removing worktree: ${target_dir}"
+  echo "Removing branch: ${target_branch}"
+
+  git worktree remove "${target_dir}"
+  git branch -D "${target_branch}"
+}
+
+# Change directory to selected git worktree
+function gwc () {
+  local selected_line=$(git worktree list | peco)
+  [ -z "$selected_line" ] && return
+
+  local target_dir hash target_branch
+  echo $selected_line | read target_dir hash target_branch
+
+  echo "Changing directory to worktree: ${target_dir}"
+  cd $target_dir
+
+  mksymlink
+}
+
+# Make symbolic link
+function mksymlink () {
+  local main_dir=$(git worktree list | head -n 1 | awk '{print $1}')
+  local ssl_source="${main_dir}/ssl"
+
+  for src_file in "${ssl_source}"/*(DN); do
+    local filename=$(basename "$src_file")
+    local target_path="./ssl/$filename"
+
+    if [[ -e "$target_path" || -L "$target_path" ]]; then
+      continue
+    else
+      echo "🔗 Linking: $target_path"
+      ln -s "$src_file" "$target_path"
+    fi
+  done
 }

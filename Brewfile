@@ -2,6 +2,7 @@
 brew "peco"
 brew "jq"
 brew "gh"
+brew "eza"
 
 # zsh
 brew "powerlevel10k"

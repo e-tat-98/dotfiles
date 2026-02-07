@@ -1,7 +1,6 @@
 # --------------------------------------------------
 # Powerlevel10k
 # --------------------------------------------------
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -44,6 +43,7 @@ fi
 # --------------------------------------------------
 # Aliases
 # --------------------------------------------------
+alias ls='eza --icons --group-directories-first'
 alias la='ls -a'
 alias ll='ls -l'
 alias gl='git log'

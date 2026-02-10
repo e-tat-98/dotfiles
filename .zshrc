@@ -50,8 +50,6 @@ alias gl='git log'
 alias gc='git checkout'
 alias gcp='git checkout $(git branch | peco)'
 alias gb='git branch'
-alias gw='git worktree'
-alias gwl='git worktree list'
 alias gbd='git branch -D $(git branch | peco)'
 alias gs='git stash -u'
 alias gss='git stash save'
@@ -77,17 +75,46 @@ function key () {
   echo 'Cmd + k       → Clear CLI'
 }
 
+# ==============================
+# Git Worktree Management
+# ==============================
+function gw () {
+  local cmd="$1"
+  if [ $# -gt 0 ]; then
+    shift
+  fi
+  case "$cmd" in
+    ls) gw-ls "$@" ;;
+    add) gw-add "$@" ;;
+    rm) gw-rm "$@" ;;
+    cd) gw-cd "$@" ;;
+    *)
+      echo "Usage:"
+      echo "  gw ls                → List git worktrees"
+      echo "  gw add <branch-name> → Add git worktree and branch"
+      echo "  gw rm                → Remove git worktree and branch"
+      echo "  gw cd                → Change directory to selected git worktree"
+      return 1
+      ;;
+  esac
+}
+
+# List git worktrees
+gw-ls () {
+  git worktree list
+}
+
 # Add git worktree and branch
-# Usage: gwadd <branch-name>
-function gwadd () {
-  local main_dir=$(git worktree list | head -n 1 | awk '{print $1}')
+# Usage: gw add <branch-name>
+function gw-add () {
+  local project_dir=$(git worktree list | head -n 1 | awk '{print $1}' | xargs dirname)
   local dir_name=${1//\//-}
-  echo "Adding worktree: ${main_dir}/${dir_name} for branch: $1"
-  git worktree add -b "$1" "${main_dir}/${dir_name}"
+  echo "Adding worktree: ${project_dir}/${dir_name} for branch: $1"
+  git worktree add -b "$1" "${project_dir}/${dir_name}"
 }
 
 # Remove git worktree and branch
-function gwrm () {
+function gw-rm () {
   local selected_line=$(git worktree list | peco)
   [ -z "$selected_line" ] && return
 
@@ -103,7 +130,7 @@ function gwrm () {
 }
 
 # Change directory to selected git worktree
-function gwc () {
+function gw-cd () {
   local selected_line=$(git worktree list | peco)
   [ -z "$selected_line" ] && return
 
@@ -118,8 +145,8 @@ function gwc () {
 
 # Make symbolic link
 function mksymlink () {
-  local main_dir=$(git worktree list | head -n 1 | awk '{print $1}')
-  local ssl_source="${main_dir}/ssl"
+  local main_branch_dir=$(git worktree list | head -n 1 | awk '{print $1}')
+  local ssl_source="${main_branch_dir}/ssl"
 
   for src_file in "${ssl_source}"/*(DN); do
     local filename=$(basename "$src_file")

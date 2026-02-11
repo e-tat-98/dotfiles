@@ -83,6 +83,16 @@ if [[ "$OS" == "Darwin" ]]; then
   echo "📦 Installing packages via Brewfile..."
   brew bundle --file="$DOTFILES_DIR/Brewfile"
 
+  # .p10k symlink
+  P10K_TARGET="$HOME/.p10k.zsh"
+  P10K_SOURCE="$DOTFILES_DIR/.p10k.zsh"
+  if [[ -e "$P10K_TARGET" || -L "$P10K_TARGET" ]]; then
+    echo "⚠️  ~/.p10k.zsh already exists, backing up"
+    mv "$P10K_TARGET" "$P10K_TARGET.backup.$(date +%s)"
+  fi
+  echo "🔗 Linking ~/.p10k.zsh -> $P10K_SOURCE"
+  ln -s "$P10K_SOURCE" "$P10K_TARGET"
+
 # ==============================
 # Linux / WSL
 # ==============================

@@ -1,0 +1,26 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "bruno-api-client.bruno",
+    "streetsidesoftware.code-spell-checker",
+    "vsls-contrib.codetour",
+    "openai.chatgpt",
+    "naumovs.color-highlight",
+    "tamasfe.even-better-toml",
+    "github.copilot-chat",
+    "eamodio.gitlens",
+    "vincaslt.highlight-matching-tag",
+    "oderwat.indent-rainbow",
+    "ms-ceintl.vscode-language-pack-ja",
+    "pkief.material-icon-theme",
+    "techer.open-in-browser",
+    "esbenp.prettier-vscode",
+    "yoavbls.pretty-ts-errors",
+    "stylelint.vscode-stylelint",
+    "wayou.vscode-todo-highlight",
+    "shardulm94.trailing-spaces",
+    "markosth09.color-picker"
+  ]
+}

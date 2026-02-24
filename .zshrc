@@ -43,7 +43,6 @@ fi
 # --------------------------------------------------
 # Aliases
 # --------------------------------------------------
-alias ls='eza --icons --group-directories-first'
 alias la='ls -a'
 alias ll='ls -l'
 alias gl='git log'

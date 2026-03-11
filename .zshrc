@@ -1,3 +1,5 @@
+COLORTERM=truecolor
+
 # --------------------------------------------------
 # Powerlevel10k
 # --------------------------------------------------
@@ -43,6 +45,7 @@ fi
 # --------------------------------------------------
 # Aliases
 # --------------------------------------------------
+alias ls='eza --classify=always --follow-symlinks --icons=always --group-directories-first'
 alias la='ls -a'
 alias ll='ls -l'
 alias gl='git log'
